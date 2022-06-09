@@ -14,7 +14,6 @@ namespace Robot
             var dalPaste = new GetData(servicePaste);
             var requestsOrigem = new Requests(serviceOrigem);
             var requestsPaste = new Requests(servicePaste);
-
             var listContatos = dalOrigem.GetContact().ToListEntity();
             var contatos = requestsPaste.MassCreate(listContatos, true);
             requestsOrigem.AtualizaCrmOrigem(contatos);
@@ -26,15 +25,14 @@ namespace Robot
             var produtoOrdem = requestsPaste.MassCreate(CreateOrderProduct(dalOrigem, dalPaste));
             requestsOrigem.AtualizaCrmOrigem(produtoOrdem);
         }
-        // public static void DeleteAll(IOrganizationService service)
-        // {
-        //     var requests = new Requests(service);
-        //     requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorder"));
-        //     requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorderdetail"));
-        //     requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("account"));
-        //     requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("contact"));
-        // }
-
+        public static void DeleteAll(IOrganizationService service)
+        {
+            var requests = new Requests(service);
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorder"));
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorderdetail"));
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("account"));
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("contact"));
+        }
         public static List<Entity> CreateOrder(GetData dalOrigem, GetData dalPaste)
         {
             var data = dalOrigem.GetOrder();

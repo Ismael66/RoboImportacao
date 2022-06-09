@@ -13,9 +13,7 @@ namespace Robot
     {
         public static void Main(string[] args)
         {
-            //var serviceOrigem = Connection.Obter();
             ConsoleMenu.Opcoes();
-            //CreateOrigem.DeleteAll(serviceOrigem);
             Console.WriteLine("Ação concluida.");
             Console.ReadKey();
         }

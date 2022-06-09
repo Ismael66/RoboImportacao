@@ -15,18 +15,6 @@ namespace Robot
             Url = service.GetOrganizationUrl();
             Service = service;
         }
-        // public List<Entity> MassCreate(EntityCollection input, bool validador = false)
-        // {
-        //     var requestWithResults = CreateBulkExecuteRequest();
-
-        //     foreach (var entity in input.Entities)
-        //     {
-        //         var upsertRequest = new UpsertRequest { Target = entity };
-        //         requestWithResults.Requests.Add(upsertRequest);
-        //     }
-        //     var responseWithResults = Service.Execute(requestWithResults) as ExecuteMultipleResponse;
-        //     return ReadResponse(responseWithResults, validador);
-        // }
         public List<Entity> MassCreate(List<Entity> records, bool validador = false)
         {
             var requestWithResults = CreateBulkExecuteRequest();
@@ -76,7 +64,6 @@ namespace Robot
             ExecuteMultipleResponse resposta = (ExecuteMultipleResponse)Service.Execute(request);
             ReadResponse(resposta);
         }
-
         public string Create(Entity entity)
         {
             return Service.Create(entity).ToString();
@@ -100,6 +87,23 @@ namespace Robot
                         Console.WriteLine($"Req n°: {responseItem.RequestIndex} => Error: {responseItem.Fault}");
                 }
             }
+        }
+        public void MassDelete(EntityCollection lista)
+        {
+            var requestWithResults = CreateBulkExecuteRequest();
+            requestWithResults.Requests.Clear();
+            foreach (var entity in lista.Entities)
+            {
+                var upsertRequest = new UpsertRequest { Target = entity };
+                requestWithResults.Requests.Add(upsertRequest);
+            }
+            var responseWithResults = Service.Execute(requestWithResults) as ExecuteMultipleResponse;
+            foreach (var responseItem in responseWithResults.Responses)
+            {
+                if (responseItem.Fault != null)
+                    Console.WriteLine($"Req n°: {responseItem.RequestIndex} => Error: {responseItem.Fault}");
+            }
+
         }
         public List<Entity> ReadResponse(ExecuteMultipleResponse response, bool validador = false)
         {

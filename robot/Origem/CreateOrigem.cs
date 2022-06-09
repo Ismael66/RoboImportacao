@@ -30,8 +30,8 @@ namespace Robot
         public static void DeleteAll(IOrganizationService service)
         {
             var requests = new Requests(service);
-            // requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorder"));
-            // requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorderdetail"));
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorder"));
+            requests.MassDelete(requests.PegaEntidadesUltimosSeteDias("salesorderdetail"));
             var listContas = requests.PegaEntidadesUltimosSeteDias("account").ToListEntity();
             requests.MassDelete(listContas);
             var listContatos = requests.PegaEntidadesUltimosSeteDias("contact").ToListEntity();
