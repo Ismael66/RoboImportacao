@@ -4,7 +4,7 @@ O objetivo desse projeto é a criação de um robô capaz da importação em mas
 
 # Desenvolvimento
 
-- Primeiramente, foi criado um robô capaz de popular o ambiente de origem, afim de que não fosse necessário o trabalho de preencher dados manualmente.
+- Primeiramente, foi criado um robô capaz de popular o ambiente de origem, a fim de que não fosse necessário o trabalho de preencher dados manualmente.
 - Posteriormente, foi criado o robô designado a fazer a importação, capaz de copiar todos os dados do ambiente de origem para o de destino.
 
 # Adicionais 
